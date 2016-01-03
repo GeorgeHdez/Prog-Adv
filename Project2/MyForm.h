@@ -731,7 +731,7 @@ private: System::Void buttonSensor_Click(System::Object^  sender, System::EventA
 
 		rellenar_matriz(matriz_mediciones, indice);
 		
-		Sleep(500);
+		Sleep(200);
 	}
 
 	for (int i = 0; i < muestreo; i++)
@@ -782,6 +782,7 @@ void maximo_minimo_absoluto(int **matriz, int **aux, int contador) {
 				c = matriz[j][contador];
 				matriz[j][contador] = matriz[i][contador];
 				matriz[i][contador] = c;
+				//AQUI SE OBTIENE LOS PUNTOS MAXIMOS Y MINIMOS DE LA TABLA;
 			}
 		}
 	}
