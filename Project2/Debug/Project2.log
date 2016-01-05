@@ -1,4 +1,2 @@
 ﻿  MyForm.cpp
-e:\git-hub\prog-adv\project2\myform.h(987): warning C4700: uninitialized local variable 'altura_maxima' used
-e:\git-hub\prog-adv\project2\myform.h(987): warning C4700: uninitialized local variable 'valor_adc_max' used
   Project2.vcxproj -> E:\Git-Hub\Prog-Adv\Debug\Project2.exe
