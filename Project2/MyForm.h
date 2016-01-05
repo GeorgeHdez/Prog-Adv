@@ -723,6 +723,7 @@ private: System::Void buttonCut_Click(System::Object^  sender, System::EventArgs
 
 }
 private: System::Void buttonSensor_Click(System::Object^  sender, System::EventArgs^  e) { // Inicia el proceso para enviar un dato al microcontrolador y que este le regrese la medicion de 5 sensores
+
 	
 	for (int indice = 0; indice < muestreo; indice++) {
 		cli::array <wchar_t, 1>^ send = gcnew array <wchar_t, 1>(5);
@@ -760,11 +761,6 @@ private: System::Void buttonSensor_Click(System::Object^  sender, System::EventA
 	this->textBox2->Text += matriz_absoluta[0][1];
 
 	Excepcion_grosor_madera();
-
-
-	for (int i = 0; i < muestreo; i++)
-		matriz_maximosminimos[i][1];
-	//Enviar_datos_corte_pic();
 
 
 }
@@ -879,11 +875,10 @@ private: System::Void buttonCalib_Click(System::Object^  sender, System::EventAr
 	}
 }
 private: System::Void Button_Play_Click(System::Object^  sender, System::EventArgs^  e) {
-
-	
-	
-
-
+	cli::array <wchar_t, 1>^send_key= gcnew array <wchar_t, 1>(5);
+	send_key[0] = 'r';
+	this->serialPort1->Write(send_key, 0, 1);
+	Enviar_datos_corte_pic();
 }
 void Excepcion_grosor_madera(void) {
 
@@ -899,16 +894,14 @@ void Excepcion_grosor_madera(void) {
 }
 Void Enviar_datos_corte_pic(void) {
 
+	conversion(matriz_absoluta);
+
 	cli::array <wchar_t, 1>^ send_info = gcnew array <wchar_t, 1>(5);
 
 	//Profundidad de corte de 1 mm 
 	int corte = System::Convert::ToInt32(this->Numeric_cut->Text);
 	int max = matriz_absoluta[0][1];
 
-	send_info[0] = corte;
-	send_info[1] = corte >> 8;
-	send_info[2] = max;
-	send_info[3] = max >> 8;
 
 
 	this->serialPort1->Write(send_info, 0, 1);
@@ -957,7 +950,7 @@ private: System::Void RunGraphBtn_Click(System::Object^  sender, System::EventAr
 	}
 }
 
-	private: Void GraficaMax() {
+private: Void GraficaMax() {
 	int cMax = 0;
 
 	for (int ren = 0; ren < muestreo; ren++) {
@@ -973,7 +966,7 @@ private: System::Void RunGraphBtn_Click(System::Object^  sender, System::EventAr
 	this->chart1->Series->Add(this->max);
 }
 
-	private: Void GraficaMin() {
+private: Void GraficaMin() {
 		int cMin = 0;
 		for (int ren = 0; ren < muestreo; ren++) {
 			if ((cMin + 10) <= muestreo) {
@@ -986,7 +979,15 @@ private: System::Void RunGraphBtn_Click(System::Object^  sender, System::EventAr
 		}
 
 		this->chart1->Series->Add(this->min);
-	}
+}
+int conversion(int **matriz) {
 
+	int altura_maxima, valor_adc_max;
+
+	matriz[0][0] = (matriz[0][0] * altura_maxima) / valor_adc_max;
+	matriz[0][1] = (matriz[0][1] * altura_maxima) / valor_adc_max;
+
+	return matriz[0][0], matriz[0][1];
+}
 };
 }
