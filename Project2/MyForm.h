@@ -892,7 +892,7 @@ private: System::Void Button_Play_Click(System::Object^  sender, System::EventAr
 	cli::array <wchar_t, 1>^send_key= gcnew array <wchar_t, 1>(5);
 	send_key[0] = 'r';
 	this->serialPort1->Write(send_key, 0, 1);
-	//Enviar_datos_corte_pic();
+	Enviar_datos_corte_pic();
 }
 void Excepcion_grosor_madera(void) {
 
@@ -906,7 +906,7 @@ void Excepcion_grosor_madera(void) {
 		this->Strip_Lable->Text = "Preparado para cortar.";
 	}
 }
-/*Void Enviar_datos_corte_pic(void) {
+Void Enviar_datos_corte_pic(void) {
 
 
 	cli::array <wchar_t, 1>^ send_info = gcnew array <wchar_t, 1>(6);
@@ -915,27 +915,16 @@ void Excepcion_grosor_madera(void) {
 	int corte = System::Convert::ToInt32(this->Numeric_cut->Text);
 	int max = matriz_absoluta[0][1];
 	
-	double corte_convert = conversion(corte);
-	double max_convert = conversion(max);
+	double max_convert = Conversion(max);
 
-	int repeat = (int)(max_convert - corte_convert)
+	int repeat = (int)(max_convert - corte);
 
-		send_info[0] = matriz_absoluta[0][0];
-		send_info[1] = matriz_absoluta[0][0] >> 8;
-		send_info[2] = matriz_absoluta[0][1];
-		send_info[3] = matriz_absoluta[0][1] >> 8;
-		send_info[4] = corte;
-		send_info[5] = corte >> 8;
+		send_info[0] = repeat;
+		
 
 
 	this->serialPort1->Write(send_info, 0, 1);
-	this->serialPort1->Write(send_info, 1, 1);
-	this->serialPort1->Write(send_info, 2, 1);
-	this->serialPort1->Write(send_info, 3, 1);
-	this->serialPort1->Write(send_info, 4, 1);
-	this->serialPort1->Write(send_info, 5, 1);
-	this->serialPort1->Write(send_info, 6, 1);
-}*/
+}
 private: System::Void buttonGraph_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->tabControlConexion->SelectTab(tabPage3);
 }
@@ -1016,6 +1005,10 @@ void Esperar_Ubicacion(void) {
 
 	} while (this->serialPort1->ReadChar() != 'n');
 
+}
+double Conversion(int x) { //CONVERSION PENDIENTE
+
+	return x * 0.3;
 }
 };
 }
