@@ -20,22 +20,19 @@ namespace Project2 {
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
-	public ref class Datos {
-		int maximo, minimo;
-		int **matriz_mediciones;
-
-	};
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 
 	public:
 		int **matriz_mediciones;
-		int **matriz_maximosminimos;
-		int **matriz_absoluta;
+		int **matriz_grafica;
 		int maximo, minimo;
 		int sensores = 5, muestreo=3;
-		Series^ max;
-		Series^ min;
+		Series^ sen1;
+		Series^ sen2;
+		Series^ sen3;
+		Series^ sen4;
+		Series^ sen5;
 
 	public:
 
@@ -57,14 +54,22 @@ namespace Project2 {
 	private: System::Windows::Forms::ToolStripStatusLabel^  Strip_Lable;
 
 	private: System::Windows::Forms::Button^  Button_Play;
-	private: System::Windows::Forms::GroupBox^  groupBox1;
-	private: System::Windows::Forms::RadioButton^  radBtnBoth;
 
-	private: System::Windows::Forms::RadioButton^  radBtnMin;
 
-	private: System::Windows::Forms::RadioButton^  radBtnMax;
+
+
+
+
 	private: System::Windows::Forms::Button^  RunGraphBtn;
 	private: System::Windows::Forms::Timer^  timer1;
+	private: System::Windows::Forms::GroupBox^  groupBox1;
+	private: System::Windows::Forms::RadioButton^  radioButton6;
+	private: System::Windows::Forms::RadioButton^  radioButton5;
+	private: System::Windows::Forms::RadioButton^  radioButton4;
+	private: System::Windows::Forms::RadioButton^  radioButton3;
+	private: System::Windows::Forms::RadioButton^  radioButton2;
+	private: System::Windows::Forms::RadioButton^  radioButton1;
+	private: System::Windows::Forms::Button^  button1;
 
 
 	private: System::Windows::Forms::RichTextBox^  richTextBox2;
@@ -177,9 +182,12 @@ namespace Project2 {
 			this->buttonAceptar = (gcnew System::Windows::Forms::Button());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->radBtnBoth = (gcnew System::Windows::Forms::RadioButton());
-			this->radBtnMin = (gcnew System::Windows::Forms::RadioButton());
-			this->radBtnMax = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton6 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->RunGraphBtn = (gcnew System::Windows::Forms::Button());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->buttonCalib = (gcnew System::Windows::Forms::Button());
@@ -199,6 +207,7 @@ namespace Project2 {
 			this->Strip_Lable = (gcnew System::Windows::Forms::ToolStripStatusLabel());
 			this->Button_Play = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->tabControlConexion->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			this->tabPage2->SuspendLayout();
@@ -409,57 +418,89 @@ namespace Project2 {
 			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->radBtnBoth);
-			this->groupBox1->Controls->Add(this->radBtnMin);
-			this->groupBox1->Controls->Add(this->radBtnMax);
-			this->groupBox1->Location = System::Drawing::Point(10, 9);
-			this->groupBox1->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->groupBox1->Controls->Add(this->radioButton6);
+			this->groupBox1->Controls->Add(this->radioButton5);
+			this->groupBox1->Controls->Add(this->radioButton4);
+			this->groupBox1->Controls->Add(this->radioButton3);
+			this->groupBox1->Controls->Add(this->radioButton2);
+			this->groupBox1->Controls->Add(this->radioButton1);
+			this->groupBox1->Location = System::Drawing::Point(72, 31);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Padding = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->groupBox1->Size = System::Drawing::Size(400, 192);
+			this->groupBox1->Size = System::Drawing::Size(288, 338);
 			this->groupBox1->TabIndex = 1;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Plot...";
+			this->groupBox1->Text = L"Graficar...";
 			// 
-			// radBtnBoth
+			// radioButton6
 			// 
-			this->radBtnBoth->AutoSize = true;
-			this->radBtnBoth->Checked = true;
-			this->radBtnBoth->Location = System::Drawing::Point(14, 131);
-			this->radBtnBoth->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->radBtnBoth->Name = L"radBtnBoth";
-			this->radBtnBoth->Size = System::Drawing::Size(101, 29);
-			this->radBtnBoth->TabIndex = 2;
-			this->radBtnBoth->TabStop = true;
-			this->radBtnBoth->Text = L"BOTH";
-			this->radBtnBoth->UseVisualStyleBackColor = true;
+			this->radioButton6->AutoSize = true;
+			this->radioButton6->Location = System::Drawing::Point(19, 218);
+			this->radioButton6->Name = L"radioButton6";
+			this->radioButton6->Size = System::Drawing::Size(103, 29);
+			this->radioButton6->TabIndex = 5;
+			this->radioButton6->TabStop = true;
+			this->radioButton6->Text = L"Todos";
+			this->radioButton6->UseVisualStyleBackColor = true;
 			// 
-			// radBtnMin
+			// radioButton5
 			// 
-			this->radBtnMin->AutoSize = true;
-			this->radBtnMin->Location = System::Drawing::Point(14, 84);
-			this->radBtnMin->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->radBtnMin->Name = L"radBtnMin";
-			this->radBtnMin->Size = System::Drawing::Size(81, 29);
-			this->radBtnMin->TabIndex = 1;
-			this->radBtnMin->Text = L"MIN";
-			this->radBtnMin->UseVisualStyleBackColor = true;
+			this->radioButton5->AutoSize = true;
+			this->radioButton5->Location = System::Drawing::Point(19, 183);
+			this->radioButton5->Name = L"radioButton5";
+			this->radioButton5->Size = System::Drawing::Size(129, 29);
+			this->radioButton5->TabIndex = 4;
+			this->radioButton5->TabStop = true;
+			this->radioButton5->Text = L"Sensor 5";
+			this->radioButton5->UseVisualStyleBackColor = true;
 			// 
-			// radBtnMax
+			// radioButton4
 			// 
-			this->radBtnMax->AutoSize = true;
-			this->radBtnMax->Location = System::Drawing::Point(14, 39);
-			this->radBtnMax->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->radBtnMax->Name = L"radBtnMax";
-			this->radBtnMax->Size = System::Drawing::Size(89, 29);
-			this->radBtnMax->TabIndex = 0;
-			this->radBtnMax->Text = L"MAX";
-			this->radBtnMax->UseVisualStyleBackColor = true;
+			this->radioButton4->AutoSize = true;
+			this->radioButton4->Location = System::Drawing::Point(19, 148);
+			this->radioButton4->Name = L"radioButton4";
+			this->radioButton4->Size = System::Drawing::Size(129, 29);
+			this->radioButton4->TabIndex = 3;
+			this->radioButton4->TabStop = true;
+			this->radioButton4->Text = L"Sensor 4";
+			this->radioButton4->UseVisualStyleBackColor = true;
+			// 
+			// radioButton3
+			// 
+			this->radioButton3->AutoSize = true;
+			this->radioButton3->Location = System::Drawing::Point(19, 113);
+			this->radioButton3->Name = L"radioButton3";
+			this->radioButton3->Size = System::Drawing::Size(129, 29);
+			this->radioButton3->TabIndex = 2;
+			this->radioButton3->TabStop = true;
+			this->radioButton3->Text = L"Sensor 3";
+			this->radioButton3->UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(19, 78);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(129, 29);
+			this->radioButton2->TabIndex = 1;
+			this->radioButton2->TabStop = true;
+			this->radioButton2->Text = L"Sensor 2";
+			this->radioButton2->UseVisualStyleBackColor = true;
+			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(19, 43);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(129, 29);
+			this->radioButton1->TabIndex = 0;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"Sensor 1";
+			this->radioButton1->UseVisualStyleBackColor = true;
 			// 
 			// RunGraphBtn
 			// 
-			this->RunGraphBtn->Location = System::Drawing::Point(260, 214);
-			this->RunGraphBtn->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->RunGraphBtn->Location = System::Drawing::Point(398, 370);
+			this->RunGraphBtn->Margin = System::Windows::Forms::Padding(6);
 			this->RunGraphBtn->Name = L"RunGraphBtn";
 			this->RunGraphBtn->Size = System::Drawing::Size(150, 44);
 			this->RunGraphBtn->TabIndex = 0;
@@ -589,10 +630,10 @@ namespace Project2 {
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(1294, 491);
+			this->richTextBox1->Location = System::Drawing::Point(1172, 491);
 			this->richTextBox1->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(324, 190);
+			this->richTextBox1->Size = System::Drawing::Size(446, 190);
 			this->richTextBox1->TabIndex = 13;
 			this->richTextBox1->Text = L"";
 			// 
@@ -633,12 +674,23 @@ namespace Project2 {
 			this->Button_Play->UseVisualStyleBackColor = false;
 			this->Button_Play->Click += gcnew System::EventHandler(this, &MyForm::Button_Play_Click);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(115, 554);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(229, 71);
+			this->button1->TabIndex = 17;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::MediumTurquoise;
 			this->ClientSize = System::Drawing::Size(1634, 748);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->Button_Play);
 			this->Controls->Add(this->statusStrip1);
 			this->Controls->Add(this->richTextBox2);
@@ -752,7 +804,7 @@ private: System::Void buttonSensor_Click(System::Object^  sender, System::EventA
 		rellenar_matriz(matriz_mediciones, indice);
 
 		
-		Sleep(200);
+		Sleep(1000);
 	}
 
 	for (int i = 0; i < muestreo; i++)
@@ -761,7 +813,7 @@ private: System::Void buttonSensor_Click(System::Object^  sender, System::EventA
 			this->richTextBox1->Text += matriz_mediciones[i][j];
 			this->richTextBox1->Text += "      ";
 		}
-
+	copiar_matriz(matriz_mediciones);
 	maximo_minimo(matriz_mediciones);
 
 	this->textBox1->Text += maximo;
@@ -785,11 +837,11 @@ int **generar_matriz(int fil, int col) { // Se genera la matriz con la que se va
 		 }
 void rellenar_matriz(int **matriz, int indice) { // Decodifica los datos que recibe del microcontrolador y rellena la matriz con estos // 
 
-	char buffer[10];
-
+	cli::array <unsigned char, 1>^buffer = gcnew array <unsigned char, 1>(10);
+	
 	for (int datos = 0; datos < 10; datos++) {
 
-		buffer[datos] = this->serialPort1->ReadChar();
+		this->serialPort1->Read(buffer,datos, 1);
 
 	}
 
@@ -817,8 +869,7 @@ void num_muestreos(void) { // Determina el numero de mediciones respecto al tama
 	muestreo = (bar/ 10);
 
 	matriz_mediciones = generar_matriz(muestreo, sensores);
-	matriz_maximosminimos = generar_matriz(muestreo, 2);
-	matriz_absoluta = generar_matriz(1, 2);
+	matriz_grafica = generar_matriz(muestreo, sensores);
 
 
 }
@@ -849,7 +900,7 @@ private: System::Void Button_Play_Click(System::Object^  sender, System::EventAr
 	Enviar_datos_corte_pic();
 }
 void Excepcion_grosor_madera(void) {
-
+/*
 	int bar = System::Convert::ToInt32(this->Numeric_cut->Text);
 	std::cout << bar;
 	if (matriz_absoluta[0][0] > bar) {
@@ -858,98 +909,160 @@ void Excepcion_grosor_madera(void) {
 	}
 	else {
 		this->Strip_Lable->Text = "Preparado para cortar.";
-	}
+	}*/
 }
 Void Enviar_datos_corte_pic(void) {
 
 
-	cli::array <wchar_t, 1>^ send_info = gcnew array <wchar_t, 1>(6);
+	//cli::array <wchar_t, 1>^ send_info = gcnew array <wchar_t, 1>(6);
 
 	//Profundidad de corte de 1 mm 
-	int corte = System::Convert::ToInt32(this->Numeric_cut->Text);
-	int max = matriz_absoluta[0][1];
+	//int corte = System::Convert::ToInt32(this->Numeric_cut->Text);
+	//int max = matriz_absoluta[0][1];
 	
-	double max_convert = Conversion(max);
+	//double max_convert = Conversion(max);
 
-	int repeat = (int)(max_convert - corte);
+	//int repeat = (int)(max_convert - corte);
 
-		send_info[0] = repeat;
+	//	send_info[0] = repeat;
 		
 
 
-	this->serialPort1->Write(send_info, 0, 1);
+	//this->serialPort1->Write(send_info, 0, 1);
 }
 private: System::Void buttonGraph_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->tabControlConexion->SelectTab(tabPage3);
 }
 private: System::Void RunGraphBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 	
-	
-	this->chart1->ChartAreas["ChartArea1"]->AxisX->Interval = 10;
-	
 	this->chart1->ChartAreas["ChartArea1"]->AxisX->Minimum = 0;
 
 	this->chart1->ChartAreas["ChartArea1"]->AxisX->Maximum = muestreo;
 
-	this->max = gcnew Series();
-	this->max->Color = Color::Red;
-	this->max->BorderWidth = 1;
-	this->max->ChartArea = "ChartArea1";
-	this->max->ChartType = SeriesChartType::Line;
-	this->max->Name = "max";
+	this->sen1 = gcnew Series();
+	this->sen1->Color = Color::Red;
+	this->sen1->BorderWidth = 1;
+	this->sen1->ChartArea = "ChartArea1";
+	this->sen1->ChartType = SeriesChartType::Line;
+	this->sen1->Name = "sen1";
 
 
-	this->min = gcnew Series();
-	this->min->Color = Color::Blue;
-	this->min->BorderWidth = 1;
-	this->min->ChartArea = "ChartArea1";
-	this->min->ChartType = SeriesChartType::Line;
-	this->min->Name = "min";
+	this->sen2 = gcnew Series();
+	this->sen2->Color = Color::Blue;
+	this->sen2->BorderWidth = 1;
+	this->sen2->ChartArea = "ChartArea1";
+	this->sen2->ChartType = SeriesChartType::Line;
+	this->sen2->Name = "sen2";
+
+	this->sen3 = gcnew Series();
+	this->sen3->Color = Color::Yellow;
+	this->sen3->BorderWidth = 1;
+	this->sen3->ChartArea = "ChartArea1";
+	this->sen3->ChartType = SeriesChartType::Line;
+	this->sen3->Name = "sen3";
+
+	this->sen4 = gcnew Series();
+	this->sen4->Color = Color::Green;
+	this->sen4->BorderWidth = 1;
+	this->sen4->ChartArea = "ChartArea1";
+	this->sen4->ChartType = SeriesChartType::Line;
+	this->sen4->Name = "sen4";
+
+	this->sen5 = gcnew Series();
+	this->sen5->Color = Color::Black;
+	this->sen5->BorderWidth = 1;
+	this->sen5->ChartArea = "ChartArea1";
+	this->sen5->ChartType = SeriesChartType::Line;
+	this->sen5->Name = "sen5";
 
 	this->chart1->Series->Clear();
 
-	if (radBtnMax->Checked) {
-		GraficaMax();
+	if (radioButton1->Checked) {
+		Graficas1();
 	}
-	else if (radBtnMin->Checked) {
-		GraficaMin();
+	else if (radioButton2->Checked) {
+		Graficas2();
+	}
+	else if (radioButton3->Checked) {
+		Graficas3();
+	}
+	else if (radioButton4->Checked) {
+		Graficas4();
+	}
+	else if (radioButton5->Checked) {
+		Graficas5();
 	}
 	else {
-		GraficaMax();
-		GraficaMin();
+		Graficas1();
+		Graficas2();
+		Graficas3();
+		Graficas4();
+		Graficas5();
 	}
 }
 
-private: Void GraficaMax() {
-	int cMax = 0;
+private: Void Graficas1() {
 
+	int cs1 = 0;
 	for (int ren = 0; ren < muestreo; ren++) {
-		if ((cMax + 10) <= muestreo) {
-			this->max->Points->AddXY(cMax, matriz_maximosminimos[ren][1]);
-			cMax += 10;
-		}
-		else {
-			this->max->Points->AddXY(muestreo, matriz_maximosminimos[ren][1]);
+
+		if ((cs1 + 1) <= muestreo) {
+			this->sen1->Points->AddXY(cs1, matriz_grafica[ren][0]);
+			cs1 += 1;
 		}
 	}
+	this->chart1->Series->Add(this->sen1);
+};
 
-	this->chart1->Series->Add(this->max);
-}
+private: Void Graficas2() {
+	int cs2 = 0;
+	for (int ren = 0; ren < muestreo; ren++) {
 
-private: Void GraficaMin() {
-		int cMin = 0;
-		for (int ren = 0; ren < muestreo; ren++) {
-			if ((cMin + 10) <= muestreo) {
-				this->min->Points->AddXY(cMin, matriz_maximosminimos[ren][0]);
-				cMin += 10;
-			}
-			else {
-				this->min->Points->AddXY(muestreo, matriz_maximosminimos[ren][0]);
-			}
+		if ((cs2 + 1) <= muestreo) {
+			this->sen2->Points->AddXY(cs2, matriz_grafica[ren][1]);
+			cs2 += 1;
 		}
+	}
+	this->chart1->Series->Add(this->sen2);
+};
+private: Void Graficas3() {
 
-		this->chart1->Series->Add(this->min);
-}
+	int cs3 = 0;
+	for (int ren = 0; ren < muestreo; ren++) {
+
+		if ((cs3 + 1) <= muestreo) {
+			this->sen3->Points->AddXY(cs3, matriz_grafica[ren][2]);
+			cs3 += 1;
+		}
+	}
+	this->chart1->Series->Add(this->sen3);
+};
+
+private: Void Graficas4() {
+
+	int cs4 = 0;
+	for (int ren = 0; ren < muestreo; ren++) {
+
+		if ((cs4 + 1) <= muestreo) {
+			this->sen4->Points->AddXY(cs4, matriz_grafica[ren][3]);
+			cs4 += 1;
+		}
+	}
+	this->chart1->Series->Add(this->sen4);
+};
+private: Void Graficas5() {
+
+	int cs5 = 0;
+	for (int ren = 0; ren < muestreo; ren++) {
+
+		if ((cs5 + 1) <= muestreo) {
+			this->sen5->Points->AddXY(cs5, matriz_grafica[ren][4]);
+			cs5 += 1;
+		}
+	}
+	this->chart1->Series->Add(this->sen5);
+
+};
 void Esperar_Ubicacion(void) {
 	cli::array <wchar_t, 1>^send_key2 = gcnew array <wchar_t, 1>(5);
 	send_key2[0] = 's';
@@ -989,6 +1102,26 @@ void maximo_minimo(int **matriz) {
 
 	minimo = matriz[0][0];
 	maximo = matriz[muestreo - 1][sensores - 1];
+}
+void copiar_matriz(int **matriz_m) {
+
+	for (int i = 0; i < muestreo; i++)
+		for (int j = 0; j < sensores; j++) {
+
+			matriz_grafica[i][j] = matriz_m[i][j];
+		}
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	cli::array <wchar_t, 1>^send_key2 = gcnew array <wchar_t, 1>(5);
+	send_key2[0] = 'm';
+	this->serialPort1->Write(send_key2, 0, 1);
+	cli::array <unsigned char, 1>^medicion = gcnew array <unsigned char, 1>(5);
+	this->serialPort1->Read(medicion,0,1);
+	this->textBox1->Text += medicion[0];
+
+	int dsajs;
+
 }
 };
 }
