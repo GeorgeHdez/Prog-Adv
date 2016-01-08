@@ -16,6 +16,8 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class Project2.Datos: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Project2.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -23,13 +25,12 @@ Class Project2.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Int32** matriz_mediciones : Public
     Int32** matriz_maximosminimos : Public
     Int32** matriz_absoluta : Public
+    Int32 maximo : Public
+    Int32 minimo : Public
     Int32 sensores : Public
     Int32 muestreo : Public
-    System.Windows.Forms.DataVisualization.Charting.Series sen1 : Public
-    System.Windows.Forms.DataVisualization.Charting.Series sen2 : Public
-    System.Windows.Forms.DataVisualization.Charting.Series sen3 : Public
-    System.Windows.Forms.DataVisualization.Charting.Series sen4 : Public
-    System.Windows.Forms.DataVisualization.Charting.Series sen5 : Public
+    System.Windows.Forms.DataVisualization.Charting.Series max : Public
+    System.Windows.Forms.DataVisualization.Charting.Series min : Public
     System.Windows.Forms.DataVisualization.Charting.Series s1 IsByValue : Public, InitOnly
     System.Windows.Forms.TabControl tabControlConexion : Public
   Methods:
